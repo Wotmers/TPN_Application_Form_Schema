@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - TPN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0fdf4;
+      color: #1b5e20;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background-color: #ffffff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #2e7d32;
+    }
+
+    form label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: 600;
+    }
+
+    form input[type="text"],
+    form input[type="file"],
+    form select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #c8e6c9;
+      border-radius: 6px;
+      background-color: #f9fff9;
+    }
+
+    form input[type="file"] {
+      padding: 8px;
+    }
+
+    button[type="submit"] {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #1b5e20;
+    }
+
+    #dealerFields {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #e8f5e9;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+    }
+  </style>
+
+  <script>
+    function toggleFields() {
+      const applicantType = document.getElementById("applicantType").value;
+      const dealerFields = document.getElementById("dealerFields");
+      dealerFields.style.display = applicantType === "dealer" ? "block" : "none";
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>Temporary Plate Number Application</h2>
+    <form id="tpnForm">
+      <label for="applicantType">Applicant Type</label>
+      <select id="applicantType" onchange="toggleFields()" required>
+        <option value="individual">Individual</option>
+        <option value="dealer">Dealer/Company</option>
+      </select>
+
+      <label for="validId">Valid ID</label>
+      <select id="validId" required>
+        <option value="">-- Select ID Type --</option>
+        <option>NIN</option>
+        <option>Driver’s License</option>
+        <option>International Passport</option>
+        <option>Voter’s Card</option>
+      </select>
+
+      <label for="idUpload">Upload ID Document</label>
+      <input type="file" id="idUpload" accept=".pdf,.jpg,.png" required>
+
+      <label for="ownershipProof">Proof of Ownership</label>
+      <input type="file" id="ownershipProof" required>
+
+      <label for="chassisNumber">Chassis Number</label>
+      <input type="text" id="chassisNumber" required>
+
+      <label for="engineNumber">Engine Number</label>
+      <input type="text" id="engineNumber" required>
+
+      <label for="vehicleDetails">Vehicle Make, Model, Year</label>
+      <input type="text" id="vehicleDetails" required>
+
+      <label for="passportPhoto">Passport Photo</label>
+      <input type="file" id="passportPhoto" accept="image/*" required>
+
+      <!-- Dealer-only Fields -->
+      <div id="dealerFields" style="display: none;">
+        <label for="cac">CAC Certificate</label>
+        <input type="file" id="cac">
+
+        <label for="tin">TIN</label>
+        <input type="text" id="tin">
+
+        <label for="signatoryId">Authorized Signatory ID</label>
+        <input type="file" id="signatoryId">
+
+        <label for="evidenceOfSales">Evidence of Import/Sales</label>
+        <input type="file" id="evidenceOfSales">
+
+        <label for="stockList">Stock List</label>
+        <input type="file" id="stockList">
+
+        <label for="dealershipLicense">Dealership License</label>
+        <input type="file" id="dealershipLicense">
+      </div>
+
+      <label for="paymentEvidence">Payment Evidence</label>
+      <input type="file" id="paymentEvidence">
+
+      <button type="submit">Submit Application</button>
+    </form>
+  </div>
+</body>
+</html>
